@@ -31,7 +31,9 @@ type Datastore struct {
 }
 
 // Open function will open the database and return a Datastore struct
-// that has a handle within it for various datastore functions.
+// that has a handle within it for various datastore functions. When you
+// call this function make sure to call it with the directory + database.DB_MAIN
+// like so: database.Open("my/dir/path/" + database.DB_MAIN)
 func Open(filepath string) (*Datastore, error) {
 	db, err := bolt.Open(filepath, 0666, &bolt.Options{Timeout: 15 * time.Second})
 
